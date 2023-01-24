@@ -116,19 +116,21 @@ public class CableSystem {
 				//found = true;
 				return channelArray[mid].getNumber();
 			}
-			if (low == mid && high == mid && found == false) 
+			if ((low == mid || high == mid) && found == false) 
 			{
 				return -1;
 			}
 			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) < 0)
 			{	
 				high = mid;
-				mid = (high - low) / 2;
+				mid = (high + low) / 2;
 			}
 			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) > 0)
 			{
 				low = mid;
-				mid = (high - low) / 2;
+				int tmp = mid;
+				mid = (high + low) / 2;
+				if (mid == tmp) mid++;
 			}
 			
 		}
