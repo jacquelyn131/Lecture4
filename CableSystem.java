@@ -113,23 +113,24 @@ public class CableSystem {
 		{
 			if (channelArray[mid].getName().equals(channelName))
 			{
-				found = true;
+				//found = true;
 				return channelArray[mid].getNumber();
+			}
+			if (low == mid && high == mid && found == false) 
+			{
+				return -1;
 			}
 			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) < 0)
 			{	
-				low = mid;
+				high = mid;
 				mid = (high - low) / 2;
 			}
 			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) > 0)
 			{
-				high = mid;
+				low = mid;
 				mid = (high - low) / 2;
 			}
-			if (low == mid && found == false) 
-			{
-				return -1;
-			}
+			
 		}
 		return -1;
 
@@ -156,6 +157,7 @@ public class CableSystem {
 	// TESTING METHOD
 	
 	public static void main(String[] args) {
+		System.out.println("B".compareToIgnoreCase("B"));
 		
 		Scanner scan = new Scanner(System.in);
 		
