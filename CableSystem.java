@@ -31,10 +31,12 @@ public class CableSystem {
 		
 		Scanner filescan = null;
 		try {
-			filescan = new Scanner(new File(datafilename));
+			// if the file exists then read the data and input it into an array leaving no empty cells
+			filescan = new Scanner(new File(datafilename)); 
 		}
 		catch (FileNotFoundException e) {
-			System.out.println("File not found. Ending program.");
+			// if the file does not exist then report the error and exit the program
+			System.out.println("File not found. Ending program."); 
 			System.exit(1);
 		}
 
@@ -57,9 +59,18 @@ public class CableSystem {
 	 * @return the number of the channel if the cable system has the channel name, -1 otherwise
 	 */
 	public int search1(String channelName) {
+		
 
-		// Remove the following line when you complete this method	
-		return -999;
+		for (int i = 0; i < channelArray.length; ++i) 
+		{
+			if (channelArray[i].getName().equals(channelName)) 
+			{
+				System.out.println("num of array cells accessed: " + i);
+				return channelArray[i].getNumber();
+			}
+		}
+		System.out.println("num of array cells accessed: " + channelArray.length);
+		return -1;
 
 	}
 	
@@ -70,6 +81,25 @@ public class CableSystem {
 	 * @param channelName the name of the channel desired
 	 * @return the number of the channel if the cable system has the channel name, -1 otherwise
 	 */
+	public static void bubbleSort(Channel[] channelArray) 
+	{
+		// traverse the array
+		// if the element is greater than the element to the right of it, then move it to the left
+		// otherwise move on to the next element
+		boolean sorted = true
+		for (int )
+			for (int i = channelArray.length - 1; i >= 0; --i) 
+			{
+				if (channelArray[i].getName().compareToIgnoreCase(channelArray[i + 1].getName()) > 0) 
+				{
+					sorted = false;
+					// switch positions
+					Channel temp = channelArray[i];
+					channelArray[i] = channelArray[i + 1];
+					channelArray[i + 1] = temp;
+				}
+			}
+	}
 	public int search2(String channelName) {
 		
 		// Remove the following line when you complete this method
@@ -130,6 +160,7 @@ public class CableSystem {
 			else
 				System.out.println(channelName + " NOT FOUND");
 		}
+		scan.close();
 		
 	}
 	
