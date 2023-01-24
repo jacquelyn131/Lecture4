@@ -86,24 +86,52 @@ public class CableSystem {
 		// traverse the array
 		// if the element is greater than the element to the right of it, then move it to the left
 		// otherwise move on to the next element
-		boolean sorted = true
-		for (int )
-			for (int i = channelArray.length - 1; i >= 0; --i) 
+		boolean sorted = true;
+		for (int i = 0; i < 7; ++i )
+		{
+			for (int j = channelArray.length - 1; j >= 0; --j) 
 			{
-				if (channelArray[i].getName().compareToIgnoreCase(channelArray[i + 1].getName()) > 0) 
+				if (channelArray[j].getName().compareToIgnoreCase(channelArray[j + 1].getName()) > 0) 
 				{
 					sorted = false;
 					// switch positions
-					Channel temp = channelArray[i];
-					channelArray[i] = channelArray[i + 1];
-					channelArray[i + 1] = temp;
+					Channel temp = channelArray[j];
+					channelArray[j] = channelArray[j + 1];
+					channelArray[j + 1] = temp;
 				}
 			}
+		}
 	}
 	public int search2(String channelName) {
 		
 		// Remove the following line when you complete this method
-		return -999;
+		int low = 0;
+		int high = channelArray.length - 1;
+		int mid = (high - low) / 2;
+		boolean found = false;
+		while (!found) 
+		{
+			if (channelArray[mid].getName().equals(channelName))
+			{
+				found = true;
+				return channelArray[mid].getNumber();
+			}
+			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) < 0)
+			{	
+				low = mid;
+				mid = (high - low) / 2;
+			}
+			else if (channelName.compareToIgnoreCase(channelArray[mid].getName()) > 0)
+			{
+				high = mid;
+				mid = (high - low) / 2;
+			}
+			if (low == mid && found == false) 
+			{
+				return -1;
+			}
+		}
+		return -1;
 
 	}
 
